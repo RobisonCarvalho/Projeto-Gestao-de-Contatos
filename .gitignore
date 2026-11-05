@@ -1,0 +1,8 @@
+/vendor/
+
+/config/database.php
+
+.env
+*.log
+
+/teste-conexao.php

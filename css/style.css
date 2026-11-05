@@ -1,0 +1,336 @@
+
+/* =================================
+   LISTA DE CONTATOS
+   Identidade visual Robison Carvalho
+================================= */
+
+:root {
+    --terracota: #A95332;
+    --areia: #EDEBE4;
+    --bege: #BAB5A0;
+    --verde: #353524;
+    --preto: #000000;
+    --branco: #FFFFFF;
+
+    --texto: #353524;
+    --texto-suave: #77766D;
+    --borda: #E3E0D7;
+
+    --sombra: 0 8px 30px rgba(53, 53, 36, 0.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: var(--areia);
+    color: var(--texto);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--terracota);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+/* Estrutura */
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.topbar {
+    background: var(--areia);
+    color: var(--verde);
+    padding: 20px 0;
+}
+
+.topbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #D58A69;
+}
+
+.topbar a {
+    color: var(--verde);
+    font-size: 14px;
+}
+
+main {
+    padding: 55px 0;
+}
+
+.page-heading {
+    margin-bottom: 28px;
+}
+
+.page-heading h1 {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--verde);
+    font-weight: 800;
+}
+
+.page-heading p {
+    color: var(--texto-suave);
+    font-size: 15px;
+}
+
+/* Cartões */
+
+.card {
+    background: var(--branco);
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+    border: 1px solid var(--borda);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 22px;
+    color: var(--verde);
+}
+
+/* Formulários */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-group input,
+.form-group textarea,
+.search-input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: #FCFBF8;
+    color: var(--texto);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.search-input:focus {
+    border-color: var(--terracota);
+    box-shadow: 0 0 0 3px rgba(169, 83, 50, 0.12);
+}
+
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-hint {
+    color: var(--texto-suave);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Botões */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--terracota);
+    color: var(--branco);
+}
+
+.btn-primary:hover {
+    background: #8F4328;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--verde);
+    color: var(--branco);
+}
+
+.btn-secondary:hover {
+    background: #242419;
+    text-decoration: none;
+}
+
+.btn-light {
+    background: var(--areia);
+    color: var(--verde);
+}
+
+.btn-light:hover {
+    background: #E0DDD3;
+    text-decoration: none;
+}
+
+/* Pesquisa */
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-form .search-input {
+    flex: 1;
+}
+
+/* Tabela */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+thead {
+    background: var(--verde);
+    color: var(--branco);
+}
+
+th {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    padding: 15px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid var(--borda);
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background: #F8F6F0;
+}
+
+.action-link {
+    color: var(--terracota);
+    font-weight: 700;
+}
+
+/* Mensagens */
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--texto-suave);
+}
+
+.empty-state p {
+    margin-bottom: 15px;
+}
+
+/* Rodapé */
+
+.footer {
+    padding: 25px 0;
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+/* Responsividade */
+
+@media (max-width: 650px) {
+    main {
+        padding: 35px 0;
+    }
+
+    .card {
+        padding: 22px 17px;
+    }
+
+    .topbar-content {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form .btn {
+        width: 100%;
+    }
+}
+
+
+/* Detalhes do contato */
+
+.contact-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 30px;
+}
+
+.contact-details .form-group {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--borda);
+}
+
+.contact-details .form-group p {
+    color: var(--texto);
+    font-size: 15px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 650px) {
+    .contact-details {
+        grid-template-columns: 1fr;
+    }
+}
