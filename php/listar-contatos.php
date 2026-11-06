@@ -149,6 +149,12 @@ try {
                                         >
                                             Visualizar →
                                         </a>
+                                        <a
+                                            class="action-link"
+                                            href="editar-contato.php?id=<?= urlencode((string) $contato['id']) ?>"
+                                        >
+                                            Editar →
+                                        </a>
                                     </td>
 
                                 </tr>

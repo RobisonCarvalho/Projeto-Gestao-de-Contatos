@@ -334,3 +334,27 @@ tbody tr:hover {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* Mensagens de feedback */
+
+.success-message {
+    background: #E8F2E8;
+    color: #285C35;
+    border: 1px solid #C7DEC9;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.error-message {
+    background: #F9E9E5;
+    color: #963F2D;
+    border: 1px solid #EAC9BE;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
