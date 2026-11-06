@@ -358,3 +358,64 @@ tbody tr:hover {
     font-size: 14px;
 }
 
+.delete-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.delete-link {
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: #A95332;
+    cursor: pointer;
+}
+
+.delete-link:hover {
+    text-decoration: underline;
+}
+
+/* Coluna de ações */
+.actions-cell {
+    min-width: 230px;
+}
+
+.contact-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+/* Formulário de exclusão */
+.delete-form {
+    display: inline-flex;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Botão excluir */
+.contact-actions .delete-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #A95332;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.contact-actions .delete-link:hover {
+    background-color: #8F4329;
+}

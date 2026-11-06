@@ -142,20 +142,37 @@ try {
                                         <?= htmlspecialchars($contato['criado_em']) ?>
                                     </td>
 
-                                    <td>
-                                        <a
-                                            class="action-link"
-                                            href="visualizar-contato.php?id=<?= urlencode((string) $contato['id']) ?>"
-                                        >
-                                            Visualizar →
-                                        </a>
-                                        <a
-                                            class="action-link"
-                                            href="editar-contato.php?id=<?= urlencode((string) $contato['id']) ?>"
-                                        >
-                                            Editar →
-                                        </a>
+                                    <td class="actions-cell">
+                                        <div class="contact-actions">
+
+                                            <a class="action-link"
+                                            href="visualizar-contato.php?id=<?= urlencode((string) $contato['id']) ?>">
+                                                Visualizar →
+                                            </a>
+
+                                            <a class="action-link"
+                                            href="editar-contato.php?id=<?= urlencode((string) $contato['id']) ?>">
+                                                Editar →
+                                            </a>
+
+                                            <form action="excluir-contato.php" method="POST"
+                                                class="delete-form"
+                                                onsubmit="return confirm('Tem certeza de que deseja excluir este contato?');">
+
+                                                <input type="hidden" name="id"
+                                                    value="<?= (int) $contato['id'] ?>">
+
+                                                <button type="submit" class="action-link delete-link">
+                                                    Excluir 
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
                                     </td>
+                                
+                                       
 
                                 </tr>
 
