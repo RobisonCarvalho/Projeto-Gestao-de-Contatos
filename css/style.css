@@ -335,7 +335,27 @@ tbody tr:hover {
     }
 }
 
+.dashboard-card {
+    background: #FFFFFF;
+    border: 1px solid #EDEBE4;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 320px;
+    margin-top: 24px;
+}
 
+.dashboard-card h2 {
+    font-size: 18px;
+    color: #353524;
+    margin-bottom: 12px;
+}
+
+.dashboard-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #A95332;
+    margin-bottom: 16px;
+}
 /* Mensagens de feedback */
 
 .success-message {
@@ -418,4 +438,43 @@ tbody tr:hover {
 
 .contact-actions .delete-link:hover {
     background-color: #8F4329;
+}
+
+.recent-contacts {
+    background: #FFFFFF;
+    border: 1px solid #EDEBE4;
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 24px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.recent-contacts h2 {
+    color: #353524;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.recent-contacts table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-contacts th,
+.recent-contacts td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #EDEBE4;
+}
+
+.recent-contacts th {
+    color: #353524;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.recent-contacts td {
+    color: #555;
+    font-size: 14px;
 }
