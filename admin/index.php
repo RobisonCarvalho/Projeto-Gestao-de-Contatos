@@ -34,7 +34,7 @@ $contatosRecentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <title>Painel Administrativo</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css?v=2">
 </head>
 
 <body>
