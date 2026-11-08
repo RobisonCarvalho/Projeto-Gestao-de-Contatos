@@ -1,3 +1,4 @@
+
 <?php
 
 session_start();
@@ -11,6 +12,15 @@ if (isset($_SESSION['usuario_id'])) {
 }
 
 $erro = '';
+$email = '';
+
+// Configurações de proteção
+$limiteTentativas = 5;
+$tempoBloqueio = 15;
+$tempoJanela = 15;
+
+// Identificar o IP
+$ipAddress = $_SERVER['REMOTE_ADDR'] ?? 'desconhecido';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -24,32 +34,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
 
         try {
-            $sql = "SELECT id, nome, email, senha
-                    FROM usuarios
+
+            // Consultar tentativas anteriores
+            $sql = "SELECT tentativas, primeira_tentativa, bloqueado_ate
+                    FROM tentativas_login
                     WHERE email = :email
-                    LIMIT 1";
+                    AND ip_address = :ip";
 
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
-                ':email' => $email
+                ':email' => $email,
+                ':ip' => $ipAddress
             ]);
 
-            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            $tentativa = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($usuario && password_verify($senha, $usuario['senha'])) {
+            // Verificar bloqueio ativo
+            if (
+                $tentativa &&
+                $tentativa['bloqueado_ate'] !== null &&
+                strtotime($tentativa['bloqueado_ate']) > time()
+            ) {
 
-                session_regenerate_id(true);
-
-                $_SESSION['usuario_id'] = $usuario['id'];
-                $_SESSION['usuario_nome'] = $usuario['nome'];
-                $_SESSION['usuario_email'] = $usuario['email'];
-
-                header('Location: ../admin/index.php');
-                exit;
+                $erro = 'Muitas tentativas incorretas. Tente novamente mais tarde.';
 
             } else {
 
-                $erro = 'E-mail ou senha inválidos.';
+                // Buscar usuário
+                $sql = "SELECT id, nome, email, senha
+                        FROM usuarios
+                        WHERE email = :email
+                        LIMIT 1";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    ':email' => $email
+                ]);
+
+                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($usuario && password_verify($senha, $usuario['senha'])) {
+
+                    // Limpar tentativas após login bem-sucedido
+                    $sql = "DELETE FROM tentativas_login
+                            WHERE email = :email
+                            AND ip_address = :ip";
+
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute([
+                        ':email' => $email,
+                        ':ip' => $ipAddress
+                    ]);
+
+                    session_regenerate_id(true);
+
+                    $_SESSION['usuario_id'] = $usuario['id'];
+                    $_SESSION['usuario_nome'] = $usuario['nome'];
+                    $_SESSION['usuario_email'] = $usuario['email'];
+
+                    header('Location: ../admin/index.php');
+                    exit;
+
+                } else {
+
+                    $erro = 'E-mail ou senha inválidos.';
+
+                    // A contagem das tentativas será implementada
+                    // no próximo passo.
+                }
             }
 
         } catch (PDOException $e) {
@@ -60,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt">

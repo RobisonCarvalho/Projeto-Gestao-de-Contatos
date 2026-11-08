@@ -524,3 +524,37 @@ tbody tr:hover {
   }
 }
 
+/* Cabeçalho do painel administrativo */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.admin-header h1 {
+    margin-bottom: 8px;
+}
+
+.admin-header p {
+    margin-bottom: 4px;
+}
+
+.logout-link {
+    color: #A95332;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

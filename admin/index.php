@@ -41,14 +41,15 @@ $contatosRecentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <main class="admin-container">
 
-        <h1>Painel Administrativo</h1>
+        <header class="admin-header">
+            <div>
+                <h1>Painel Administrativo</h1>
+                <p>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario_nome'], ENT_QUOTES, 'UTF-8') ?>!</p>
+                <p>Você está autenticado no sistema.</p>
+            </div>
 
-        <p>
-            Bem-vindo,
-            <?= htmlspecialchars($_SESSION['usuario_nome'], ENT_QUOTES, 'UTF-8') ?>!
-        </p>
-
-        <p>Você está autenticado no sistema.</p>
+            <a href="../php/logout.php" class="logout-link">Sair do painel →</a>
+        </header>
 
         <div class="dashboard-card">
             <h2>Total de contatos</h2>
@@ -123,10 +124,7 @@ $contatosRecentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 </section>
 
-        <a href="../php/logout.php" class="action-link">
-            Sair do painel →
-        </a>
-
+       
     </main>
 
 </body>
