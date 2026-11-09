@@ -97,11 +97,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 } else {
 
-                    $erro = 'E-mail ou senha inválidos.';
+    $erro = 'E-mail ou senha inválidos.';
 
-                    // A contagem das tentativas será implementada
-                    // no próximo passo.
-                }
+    // Verificar se ainda estamos dentro da janela de tentativas
+    $agora = time();
+
+    if (
+        !$tentativa ||
+        ($agora - strtotime($tentativa['primeira_tentativa'])) > ($tempoJanela * 60)
+    ) {
+
+        // Criar novo registro de tentativas
+        $sql = "INSERT INTO tentativas_login
+                (email, ip_address, tentativas, primeira_tentativa)
+                VALUES (:email, :ip, 1, NOW())
+                ON DUPLICATE KEY UPDATE
+                tentativas = 1,
+                primeira_tentativa = NOW(),
+                bloqueado_ate = NULL";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':email' => $email,
+            ':ip' => $ipAddress
+        ]);
+
+    } else {
+
+        // Incrementar a quantidade de tentativas
+        $novaTentativa = $tentativa['tentativas'] + 1;
+
+        $bloqueadoAte = null;
+
+        if ($novaTentativa >= $limiteTentativas) {
+            $bloqueadoAte = date(
+                'Y-m-d H:i:s',
+                $agora + ($tempoBloqueio * 60)
+            );
+        }
+
+        $sql = "UPDATE tentativas_login
+                SET tentativas = :tentativas,
+                    bloqueado_ate = :bloqueado
+                WHERE email = :email
+                AND ip_address = :ip";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':tentativas' => $novaTentativa,
+            ':bloqueado' => $bloqueadoAte,
+            ':email' => $email,
+            ':ip' => $ipAddress
+        ]);
+    }
+}
             }
 
         } catch (PDOException $e) {
