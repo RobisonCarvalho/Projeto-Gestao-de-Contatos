@@ -13,7 +13,7 @@ Evoluir um sistema de cadastro de contatos para uma aplicação completa de gere
 - [x] Pesquisa por nome ou e-mail
 - [x] Visualização individual de contatos
 - [x] Edição de contatos cadastrados
-- [ ] Atualização de informações
+- [x] Atualização de informações
 - [ ] Exclusão de contatos com confirmação
 
 ## 🛠️ Tecnologias utilizadas
